@@ -173,8 +173,19 @@ let nextQuestion = () => {
 
         showQuestion()
     }
-
 }
+
+//nextBtn
+nextBtn.addEventListener("click", nextQuestion)
+
+//previousBtn
+previousBtn.addEventListener("click", () => {
+    if (currentQuestion > 0) {
+        currentQuestion--
+    }
+    showQuestion()
+
+})
 
 const selectAnswer = (index) => {
     userAnswers[currentQuestion] = index
