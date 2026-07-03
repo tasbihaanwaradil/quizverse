@@ -229,12 +229,21 @@ const showResult = () => {
         <h3>Question ${index + 1}</h3>
         <p>${question.question}</p>
 
-        <p> Your Answers:
+        <p> Your Answer:
             <span class ="${userAnswers[index] === question.answer ? "correctAnswer" : "wrongAnswer"} ">${userAnswers[index] === undefined ? "Not Answered" : question.options[userAnswers[index]]}</span>
         </p>
 
-
+        <p>Correct Answer:
+            ${question.options[question.answer]}
+        </p>
     </div>
     `
     })
+
+    scoreTotal.innerText = `Score : ${correctCount} / ${Questions.length}`
+    correct.innerText = `Correct : ${correctCount}`
+    wrongAnswers.innerText = `Wrong : ${wrongCount}`
+    unanswered.innerText = `Unanswered : ${unansweredCount}`
+    percentage.innerText = `Percentage : ${correctCount / Questions.length * 100}%`
 }
+
