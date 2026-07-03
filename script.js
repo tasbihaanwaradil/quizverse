@@ -172,6 +172,9 @@ let nextQuestion = () => {
         currentQuestion++
 
         showQuestion()
+    } else {
+        showResult()
+
     }
 }
 
@@ -192,3 +195,46 @@ const selectAnswer = (index) => {
     showQuestion()
 }
 
+const showResult = () => {
+
+    //clear interval first
+    clearInterval(interval)
+
+    //hide quiz screen
+    quizScreen.classList.add("hidden")
+
+    //show result screen
+    resultScreen.classList.remove("hidden")
+
+    //variables
+    let correctCount = 0
+    let wrongCount = 0
+    let unansweredCount = 0
+
+    //review answers
+    review.innerHTML = ""
+
+    Questions.map((question, index) => {
+        if (userAnswers[index] === undefined) {
+            unansweredCount++
+        } else if (userAnswers[index] === question.answer) {
+            correctCount++
+        } else {
+            wrongCount++
+        }
+
+        //Apend Child inside review parent
+        review.innerHTML += `
+    <div class = "reviewItem">
+        <h3>Question ${index + 1}</h3>
+        <p>${question.question}</p>
+
+        <p> Your Answers:
+            <span class ="${userAnswers[index] === question.answer ? "correctAnswer" : "wrongAnswer"} ">${userAnswers[index] === undefined ? "Not Answered" : question.options[userAnswers[index]]}</span>
+        </p>
+
+
+    </div>
+    `
+    })
+}
