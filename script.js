@@ -247,3 +247,13 @@ const showResult = () => {
     percentage.innerText = `Percentage : ${correctCount / Questions.length * 100}%`
 }
 
+//Restart Quiz Button
+restartBtn.addEventListener("click", () => {
+    currentQuestion = 0
+    userAnswers = []
+
+    //now hide result screen and show start screen
+    resultScreen.classList.add("hidden")
+    startScreen.classList.remove("hidden")
+
+})
